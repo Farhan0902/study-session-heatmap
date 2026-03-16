@@ -1,8 +1,43 @@
+/* Responsive fix for mobile preview (412x914) */
+.hero, .featureCards, .card, .main-content, .slide, .feature-card {
+  max-width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+@media (max-width: 480px) {
+  .hero, .featureCards, .card, .main-content, .slide, .feature-card {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100vw;
+    min-width: 0;
+  }
+  body, html, #root {
+    overflow-x: hidden !important;
+    width: 100vw;
+    min-width: 0;
+  }
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  #root {
+    padding: 0.5rem;
+  }
+  .card {
+    padding: 1rem;
+  }
 }
 
 .logo {

@@ -1,3 +1,41 @@
+// Helper untuk dapatkan minggu ke berapa dalam tahun
+function getWeekKey(dateValue) {
+  const d = new Date(dateValue);
+  d.setHours(0, 0, 0, 0);
+  // Minggu dimulai Senin
+  const firstDay = new Date(d.getFullYear(), 0, 1);
+  const dayOfYear = Math.floor((d - firstDay) / (24 * 60 * 60 * 1000)) + 1;
+  const week = Math.ceil((dayOfYear + firstDay.getDay()) / 7);
+  return `${d.getFullYear()}-W${week}`;
+}
+
+// Helper untuk dapatkan bulan
+function getMonthKey(dateValue) {
+  const d = new Date(dateValue);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+}
+
+export function getSessionsPerWeek(sessions = []) {
+  const counts = sessions.reduce((acc, session) => {
+    const week = getWeekKey(getDateFromSession(session));
+    acc[week] = (acc[week] || 0) + 1;
+    return acc;
+  }, {});
+  return Object.entries(counts)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([week, count]) => ({ week, count }));
+}
+
+export function getSessionsPerMonth(sessions = []) {
+  const counts = sessions.reduce((acc, session) => {
+    const month = getMonthKey(getDateFromSession(session));
+    acc[month] = (acc[month] || 0) + 1;
+    return acc;
+  }, {});
+  return Object.entries(counts)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([month, count]) => ({ month, count }));
+}
 function getDateFromSession(session) {
   return session.date || new Date(session.createdAt || new Date()).toISOString().split("T")[0];
 }
