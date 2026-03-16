@@ -7,7 +7,8 @@ export default function SubjectBarChart({ data = [] }) {
   return (
     <BarChart
       height={300}
-      layout="horizontal"
+      width={600}
+      layout="vertical"
       series={[
         {
           data: data.map((d) => d.value),
@@ -15,14 +16,14 @@ export default function SubjectBarChart({ data = [] }) {
         },
       ]}
       xAxis={[{
-        min: 0,
-        max: Math.max(...data.map((d) => d.value), 100),
-        valueFormatter: (value) => `${value} min`,
-      }]}
-      yAxis={[{
         scaleType: "band",
         data: data.map((d) => d.name),
         width: 140,
+      }]}
+      yAxis={[{
+        min: 0,
+        max: Math.max(...data.map((d) => d.value), 100),
+        valueFormatter: (value) => `${value} min`,
       }]}
     />
   );
