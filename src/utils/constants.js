@@ -17,9 +17,9 @@ export const ROUTES = {
   NOTES: "/notes",
 };
 
-export const TIMER_PRESETS = [15, 25, 45, 60];
+export const TIMER_PRESETS = [1, 15, 25, 45, 60];
 
-export const DEFAULT_TIMER_MINUTES = 25;
+export const DEFAULT_TIMER_MINUTES = 15;
 
 export const SUBJECT_OPTIONS = [
   "Math",
