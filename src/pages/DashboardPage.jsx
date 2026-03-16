@@ -16,20 +16,18 @@ import { formatDuration, formatNumber, formatSubject } from "../utils/format";
 import SessionCard from "../components/SessionCard";
 import SessionPieChart from "../components/SessionPieChart";
 import SubjectBarChart from "../components/SubjectBarChart";
+import SubjectPieChart from "../components/SubjectPieChart";
+
 
 export default function DashboardPage() {
   // Pakai data dummy
   const [sessions] = useState([...dummySessions]);
-  const [granularity, setGranularity] = useState("day");
 
   // Statistik utama (analytics)
   const totalSessions = getTotalSessions(sessions);
   const totalMinutes = getTotalStudyMinutes(sessions);
   const avgDuration = getAverageSessionDuration(sessions);
   const mostStudied = getMostStudiedSubject(sessions);
-  const sessionsPerDay = getSessionsPerDay(sessions);
-  const sessionsPerWeek = getSessionsPerWeek(sessions);
-  const sessionsPerMonth = getSessionsPerMonth(sessions);
   const subjectDist = getSubjectDistribution(sessions);
 
   // 3 sesi terbaru
@@ -59,59 +57,20 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      {/* Sessions Pie Chart & Subject Bar Chart dalam grid */}
+      {/* Sessions Pie Chart & Subject Bar/Pie Chart dalam grid */}
       <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Sessions Pie Chart kiri */}
+        {/* Subject Pie Chart kiri */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <h2 className="text-lg font-semibold text-slate-800">Sessions</h2>
+            <h2 className="text-lg font-semibold text-slate-800">Subject Distribution (Pie)</h2>
           </div>
           <div className="rounded-xl bg-white p-5 shadow-sm border border-slate-200 flex flex-col items-center justify-center h-[400px]">
-            {/* Granularity selector horizontal di atas pie chart */}
-            <div className="flex gap-2 mb-4">
-              <button
-                className={
-                  granularity === "day"
-                    ? "px-3 py-1 rounded-lg border text-sm font-semibold transition-colors focus:outline-none bg-emerald-500 text-white border-emerald-500"
-                    : "rounded-lg border border-emerald-500 text-emerald-500 px-3 py-1 text-sm font-semibold focus:outline-none"
-                }
-                onClick={() => setGranularity("day")}
-                type="button"
-              >
-                Per Day
-              </button>
-              <button
-                className={
-                  granularity === "week"
-                    ? "px-3 py-1 rounded-lg border text-sm font-semibold transition-colors focus:outline-none bg-yellow-400 text-white border-yellow-400"
-                    : "rounded-lg border border-yellow-400 text-yellow-500 px-3 py-1 text-sm font-semibold focus:outline-none"
-                }
-                onClick={() => setGranularity("week")}
-                type="button"
-              >
-                Per Week
-              </button>
-              <button
-                className={
-                  granularity === "month"
-                    ? "px-3 py-1 rounded-lg border text-sm font-semibold transition-colors focus:outline-none bg-red-500 text-white border-red-500"
-                    : "rounded-lg border border-red-500 text-red-500 px-3 py-1 text-sm font-semibold focus:outline-none"
-                }
-                onClick={() => setGranularity("month")}
-                type="button"
-              >
-                Per Month
-              </button>
-            </div>
-            {/* Pie chart sessions */}
-            {granularity === "day" && <SessionPieChart data={sessionsPerDay.map(d => ({ name: d.day, count: d.count }))} granularity="day" />}
-            {granularity === "week" && <SessionPieChart data={sessionsPerWeek.map(d => ({ name: d.week, count: d.count }))} granularity="week" />}
-            {granularity === "month" && <SessionPieChart data={sessionsPerMonth.map(d => ({ name: d.month, count: d.count }))} granularity="month" />}
+            <SubjectPieChart data={subjectDist} />
           </div>
         </div>
         {/* Subject Distribution Bar Chart kanan */}
         <div>
-          <h2 className="text-lg font-semibold text-slate-800 mb-2">Subject Distribution</h2>
+          <h2 className="text-lg font-semibold text-slate-800 mb-2">Subject Distribution (Bar)</h2>
           <div className="rounded-xl bg-white p-5 shadow-sm border border-slate-200 flex flex-col items-center justify-center h-[400px]">
             <SubjectBarChart data={subjectDist} />
           </div>
@@ -135,3 +94,4 @@ export default function DashboardPage() {
     </div>
   );
 }
+
