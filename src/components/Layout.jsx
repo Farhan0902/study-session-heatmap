@@ -17,7 +17,6 @@ const navItems = [
   { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { to: '/focus', label: 'Focus Timer', icon: Timer },
   { to: '/heatmap', label: 'Heatmap', icon: Grid3X3 },
-  { to: '/analytics', label: 'Analytics', icon: BarChart2 },
   { to: '/sessions', label: 'Sessions', icon: BookOpen },
   { to: '/notes', label: 'Notes', icon: NotebookPen },
 ]
