@@ -66,7 +66,7 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-lg font-semibold text-slate-800">Sessions</h2>
           </div>
-          <div className="rounded-xl bg-white p-5 shadow-sm border border-slate-200 flex flex-col items-center justify-center min-h-[320px]">
+          <div className="rounded-xl bg-white p-5 shadow-sm border border-slate-200 flex flex-col items-center justify-center h-[320px]">
             {/* Granularity selector horizontal di atas pie chart */}
             <div className="flex gap-2 mb-4">
               <button
@@ -112,7 +112,7 @@ export default function DashboardPage() {
         {/* Subject Distribution Bar Chart kanan */}
         <div>
           <h2 className="text-lg font-semibold text-slate-800 mb-2">Subject Distribution</h2>
-          <div className="rounded-xl bg-white p-5 shadow-sm border border-slate-200 flex flex-col min-h-[320px]">
+          <div className="rounded-xl bg-white p-5 shadow-sm border border-slate-200 flex flex-col items-center justify-center h-[320px]">
             <SubjectBarChart data={subjectDist} />
           </div>
         </div>
