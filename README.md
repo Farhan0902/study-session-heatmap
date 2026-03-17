@@ -1,7 +1,10 @@
 
 Nama Website : Study Session Heatmap
+
 Nama Tim : Tim Bubur Dikunyah
+
 Dengan Backend : TIDAK
+
 Daftar Fitur Utama :
 1. Landing page / Home
 2. Dashboard
